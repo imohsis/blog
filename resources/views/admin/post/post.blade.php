@@ -82,9 +82,11 @@
 
                 <div class="checkbox pull-left">
                   <label>
-                  <input name="status"@if ($post->status ==1)
+                  <input name="status"
+                {{--   @if ($post->status ==1)
                     checked
-                    @endif type="checkbox" value="1"> Publish  Your Article
+                    @endif --}}
+                     type="checkbox" value="1"> Publish  Your Article
                   </label>
                 </div>
 
@@ -145,7 +147,7 @@
             <!-- /.box-header -->
             <div class="box-body pad">
               
-                <textarea name="body"  class="textarea" placeholder="Place some text here"
+                <textarea id="editor1"  name="body" 
                           style="width: 100%; height: 500px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
            
             </div>
@@ -192,6 +194,20 @@ $(".select2").select2();
 });
 </script>
 
+
+
+{{-- <script src="{{ asset('admin/bower_components/ckeditor/ckeditor.js') }}"></script> --}}
+
+<script src="//cdn.ckeditor.com/4.9.2/full/ckeditor.js"></script>
+<script>
+  $(function () {
+    {{-- // Replace the <textarea id="editor1"> with a CKEditor --}}
+  {{--   // instance, using default configuration. --}}
+    CKEDITOR.replace('editor1')
+    {{-- //bootstrap WYSIHTML5 - text editor --}}
+    $('.textarea').wysihtml5()
+  });
+</script>
 
 
 @endsection

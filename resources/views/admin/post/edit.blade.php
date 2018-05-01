@@ -106,7 +106,26 @@
 
                   @foreach($tags as $tag)
 
-                   <option value="{{ $tag->id }}"> {{ $tag->name }} </option>
+                   <option value="{{ $tag->id }}"
+
+
+
+                  @foreach ($post->tags as $postTag)
+
+                    @if ($postTag->id == $tag->id)
+                     
+                      selected
+                     
+                    @endif
+
+                    {{-- expr --}}
+                  @endforeach
+
+
+
+                    >
+
+                    {{ $tag->name }} </option>
                  
 
                   @endforeach
@@ -120,7 +139,21 @@
                         style="width: 100%;" name="categories[]">
                    @foreach($categories as $category)
 
-                   <option value="{{ $category->id }}"> {{ $category->name }} </option>
+                   <option value="{{ $category->id }}"
+
+                
+                  @foreach ($post->categories as $postCategory)
+
+                    @if ($postCategory->id == $category->id)
+                     
+                      selected
+                     
+                    @endif
+
+                    {{-- expr --}}
+                  @endforeach
+
+                    > {{ $category->name }} </option>
                  
 
                   @endforeach
@@ -148,7 +181,7 @@
             <!-- /.box-header -->
             <div class="box-body pad">
               
-                <textarea name="body"  class="textarea" placeholder="Place some text here"
+                <textarea id="editor1" name="body" 
 
                           style="width: 100%; height: 500px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;" >
 
@@ -189,9 +222,10 @@
 
 @section('footerSection')
 
-<script  src="{{ asset('admin/bower_components/select2/dist/js/select2.full.min.js') }}">
-  
-</script>
+
+
+
+<script  src="{{ asset('admin/bower_components/select2/dist/js/select2.full.min.js') }}"></script>
 
 <script>
   $(document).ready(function() {
@@ -201,6 +235,17 @@ $(".select2").select2();
 });
 </script>
 
+<script src="//cdn.ckeditor.com/4.9.2/full/ckeditor.js"></script>
+{{-- <script src="{{ asset('admin/bower_components/ckeditor/ckeditor.js') }}"></script> --}}
 
+<script>
+  $(function () {
+    {{-- // Replace the <textarea id="editor1"> with a CKEditor --}}
+  {{--   // instance, using default configuration. --}}
+    CKEDITOR.replace('editor1')
+    {{-- //bootstrap WYSIHTML5 - text editor --}}
+    $('.textarea').wysihtml5()
+  });
+</script>
 
 @endsection
