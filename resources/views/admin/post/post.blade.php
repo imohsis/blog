@@ -197,8 +197,8 @@ $(".select2").select2();
 
 
 {{-- <script src="{{ asset('admin/bower_components/ckeditor/ckeditor.js') }}"></script> --}}
-
-<script src="//cdn.ckeditor.com/4.9.2/full/ckeditor.js"></script>
+<script src="{{ asset('admin/ckeditor/ckeditor.js') }}"></script>
+{{-- <script src="//cdn.ckeditor.com/4.9.2/full/ckeditor.js"></script> --}}
 <script>
   $(function () {
     {{-- // Replace the <textarea id="editor1"> with a CKEditor --}}
