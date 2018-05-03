@@ -21,8 +21,8 @@
   js = d.createElement(s); js.id = id;
   js.src = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.0&appId=1883953631636428&autoLogAppEvents=1';
   fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
-
+}(document, 'script', 'facebook-jssdk'));
+</script>
  <article>
       <div class="container">
         <div class="row">
@@ -33,7 +33,8 @@
               @foreach($post->categories as $category)
               <small class="pull-right" style="margin-right:22px">
 
-                 {{ $category->name }}
+                 <a href="">
+                 {{ $category->name }}</a>
 
               </small>
               @endforeach
@@ -41,11 +42,11 @@
 
               <h3>Tags</h3>
               @foreach($post->tags as $tag)
-              <small class="pull-left" style="margin-right:22px; border-radius:5px; border:1px solid gray; padding:5px;">
+             <a href=""> <small class="pull-left" style="margin-right:22px; border-radius:5px; border:1px solid gray; padding:5px;">
 
                  {{ $tag->name }}
 
-              </small>
+              </small></a>
               @endforeach
           </div>
           <div class="fb-comments" data-href="{{ Request::url() }}" data-numposts="5"></div>
