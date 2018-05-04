@@ -90,8 +90,7 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-        $post = Post::with('tags', 'categories')->where('id', $id  )->first();
-    
+         $post = Post::with('tags', 'categories')->where('id', $id  )->first();
          $tags = Tag::all();
          $categories = Category::all();
          return view('admin/post/edit', compact('tags','categories','post'));
@@ -113,11 +112,21 @@ class PostController extends Controller
        'title'  => 'required',
        'subtitle'  => 'required',
        'slug'  => 'required',
-       'body'  => 'required'
+       'body'  => 'required',
+       'image'  =>'required'
  
        ]);
+     
+       if ($request->hasFile('image')) {
+        $imageName = $request->image->store('public')
+       }
+
+
+
+
 
        $post =  Post::find($id);
+       $post->image = $imageName;
        $post->title = $request->title;
        $post->subtitle = $request->subtitle;
        $post->slug = $request->slug;

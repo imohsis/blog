@@ -33,7 +33,7 @@
               @foreach($post->categories as $category)
               <small class="pull-right" style="margin-right:22px">
 
-                 <a href="">
+                 <a href="{{ route('category',$category->slug) }}">
                  {{ $category->name }}</a>
 
               </small>
@@ -42,7 +42,7 @@
 
               <h3>Tags</h3>
               @foreach($post->tags as $tag)
-             <a href=""> <small class="pull-left" style="margin-right:22px; border-radius:5px; border:1px solid gray; padding:5px;">
+             <a href="{{ route('tag',$tag->slug) }}"> <small class="pull-left" style="margin-right:22px; border-radius:5px; border:1px solid gray; padding:5px;">
 
                  {{ $tag->name }}
 
