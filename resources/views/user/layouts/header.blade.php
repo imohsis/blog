@@ -20,6 +20,30 @@
             <li class="nav-item">
               <a class="nav-link" href="contact.html">Contact</a>
             </li>
+            <li class="nav-item">
+             
+            @if(Auth::guest())
+              <a class="nav-link" href="{{ route('login') }}">Login</a>
+
+            
+           @else()
+            
+               <a href="{{ route('logout') }}"
+                  onclick="event.preventDefault();
+                     document.getElementById('logout-form').submit();">
+                           {{ __('Logout') }}
+                              </a>
+
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        @csrf
+                                    </form>
+                             
+
+            @endif
+
+
+             
+            </li>
           </ul>
         </div>
       </div>

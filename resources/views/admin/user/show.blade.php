@@ -1,6 +1,12 @@
 @extends('admin.layouts.app')
 
+@section('headSection')
 
+  <link rel="stylesheet" href="{{ asset('admin/dist/css/AdminLTE.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('admin/dist/css/skins/_all-skins.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('admin/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css') }}">
+
+@endsection
 
 @section('main-content')
 
@@ -10,7 +16,7 @@
       <h1>
         welcome
         <small>it all starts here</small>
-      </h1>
+      </h1> 
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
         <li><a href="#">Examples</a></li>
@@ -24,7 +30,8 @@
       <!-- Default box -->
       <div class="box">
         <div class="box-header with-border">
-          <h3 class="box-title">Title</h3>
+          <h3 class="box-title">Users</h3>
+          <a class="col-lg-offset-5 btn btn-success" href="{{ route('user.create') }}">Add New</a>
 
           <div class="box-tools pull-right">
             <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip"
@@ -35,7 +42,79 @@
           </div>
         </div>
         <div class="box-body">
-          Start creating your amazing content!
+      <div class="box">
+            <div class="box-header">
+              <h3 class="box-title">Data Table With Full Features</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+              <table id="example1" class="table table-bordered table-striped">
+                <thead>
+                <tr>
+                  <th>Id</th>
+                  <th>User Name</th>
+                  
+                  <th>Edit</th>
+                  <th>Delete</th>
+                </tr>
+                </thead>
+                <tbody>
+
+              @foreach($users as $user )
+
+                <tr>
+                  <td>{{ $loop->index + 1 }}</td>
+                  <td>{{ $user->name }}</td>
+                  <td><a href="{{ route('user.edit', $user->id) }}"> <span class="glyphicon glyphicon-edit"></a></span></td>
+
+                  <td>
+                    <form id="delete-form-{{ $user->id }}"  action="{{ route('user.destroy', $user->id) }}"  
+                      style="display: none" method="post">
+                      
+                      {{ csrf_field() }}
+                      {{ method_field('DELETE') }}
+
+
+                    </form>
+                    <a href="" onclick="
+
+                    if(confirm('Are you sure?'))
+
+                    {
+                      event.preventDefault(); 
+
+                      document.getElementById('delete-form-{{ $user->id }}').submit();
+
+                    }
+
+                    else{
+
+                    event.preventDefault();
+
+                  }"  > <span class="glyphicon glyphicon-trash"></a></span>
+
+                  </td>
+                </tr>
+
+              @endforeach
+
+
+               
+                </tbody>
+                <tfoot>
+                <tr>
+                  <th>Id</th>
+                  <th>user Name</th>
+                 
+                  <th>Edit</th>
+                  <th>Delete</th>
+                </tr> 
+                </tfoot>
+              </table>
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
         </div>
         <!-- /.box-body -->
         <div class="box-footer">
@@ -49,4 +128,26 @@
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
+@endsection
+
+
+
+@section('footerSection')
+
+<script src="{{ asset('admin/bower_components/datatables.net/js/jquery.dataTables.min.js') }}"></script>
+<script src="{{ asset('admin/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js') }}"></script>
+
+<script src="{{ asset('admin/bower_components/jquery-slimscroll/jquery.slimscroll.min.js') }}"></script>
+<!-- FastClick -->
+<script src="{{ asset('admin/bower_components/fastclick/lib/fastclick.js') }}"></script>
+
+
+<script>
+  $(function () {
+    $('#example1').DataTable()
+   
+  })
+
+</script>
+
 @endsection

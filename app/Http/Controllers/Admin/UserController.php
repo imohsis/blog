@@ -4,9 +4,18 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Model\admin\admin;
 
 class UserController extends Controller
 {
+
+
+   public function __construct()
+   {
+       $this->middleware('auth:admin');
+   }
+
+
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +23,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('admin.user.show');
+        $users = admin::all();
+        return view('admin.user.show', compact('users'));
     }
 
     /**
