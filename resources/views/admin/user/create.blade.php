@@ -26,12 +26,10 @@
             <div class="box-header with-border">
               <h3 class="box-title"> Add Admin Users</h3>
             </div>
-            <!-- /.box-header -->
-            <!-- form start -->
-
+            
            @include('includes.messages')
 
-            <form role="form" method="post" action="{{ route('admin.store') }}">
+            <form role="form" method="post" action="{{ route('user.store') }}">
 
               {{ csrf_field() }}
               <div class="box-body">
@@ -39,27 +37,52 @@
                 <div class="col-lg-offset-3 col-lg-6">
                   
                  <div class="form-group">
-                  <label for="name">User</label>
+                  <label for="name"> User Name</label>
                   <input type="text" class="form-control" id="name" placeholder="name" name="name">
                 </div>
                 
                 <div class="form-group">
-                  <label for="slug">Slug</label>
-                  <input type="text" class="form-control" id="slug" name="slug" placeholder="Slug" >
+                  <label for="slug">Email</label>
+                  <input type="text" class="form-control" id="email" name="email" placeholder="Email" >
               
+                 </div>
+
+               <div class="form-group">
+                  <label for="password">Password</label>
+                  <input type="password" class="form-control" id="password" name="password" placeholder="Password" >
+              
+                 </div>  
+
+                 <div class="form-group">
+                  <label for="confirm_password">Confirm Password</label>
+                  <input type="password" class="form-control" id="confirm_password" name="confirm_password" placeholder="Confirm Password" >
+              
+                 </div>
+
+                 
+                 <div class="form-group">
+                  <label for="role">Assign Role</label>
+                  <select name="role" id="" class="form-control">
+                    <option value="0">Editor</option>
+                    <option value="1">Publisher</option>
+                    <option value="2">Writer</option>
+                  </select>
+              
+                 </div>
+                 
 
 
                <br>
               <div class="form-group">
                 <button type="submit" class="btn btn-primary">Submit</button>
-                <a href="{{ route('user.index') }}" class="btn btn-warning">Back</a>
+                <a href="{{ route('user.index') }}" class="btn btn-warnitng">Back</a>
              
               </div>
                 </div>
 
                 </div>
 
-       </div>
+      
 
             </form>
           </div>

@@ -31,6 +31,9 @@ Route::resource('admin/post', 'PostController');
 
 Route::resource('admin/user', 'UserController');
 
+//Role Controller
+Route::resource('admin/role', 'RoleController');
+
 
 Route::resource('admin/tag', 'TagController');
 
